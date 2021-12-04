@@ -5,12 +5,12 @@ fun main() {
     val input4 = "src/main/kotlin/input4.txt"
 
     val day1 = Day1()
-    print(day1.partOne(input1))
-    print(day1.partTwo(input1))
+    println(day1.partOne(input1))
+    println(day1.partTwo(input1))
 
     val day2 = Day2()
-    print(day2.partOne(input2))
-    print(day2.partTwo(input2))
+    println(day2.partOne(input2))
+    println(day2.partTwo(input2))
 
     val day3 = Day3()
     println(day3.partOne(input3))
