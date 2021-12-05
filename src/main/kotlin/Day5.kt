@@ -32,7 +32,6 @@ class Day5 {
         .useLines { lines ->
             val maps = parse(lines)
                 .filter { it.isHorizontal() || it.isVertical() || it.isDiagonal() }
-                .map { println(it); it }
                 .toList()
 
             val (xMax, yMax) = getMaxCoordinates(maps)
