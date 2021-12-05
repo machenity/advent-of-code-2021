@@ -1,45 +1,47 @@
 import java.io.File
 
 class Day4 {
-    fun partOne(filePath: String): Int {
-        val (drawns, boards) = parse(File(filePath).bufferedReader().lineSequence())
+    fun partOne(filePath: String): Int =
+        File(filePath).useLines { lines ->
+            val (drawns, boards) = parse(lines)
 
-        return drawns.asSequence()
-            .runningFold(linkedSetOf<Int>()) { acc, currentDrawn -> acc.add(currentDrawn).let { acc } }
-            .map {
-                boards.foldIndexed(-1 to false) { index, acc, board ->
-                    when (acc.second) {
-                        true -> acc
-                        else -> when (checkBingo(board, it)) {
-                            true -> index to true
-                            false -> acc
+            drawns.asSequence()
+                .runningFold(linkedSetOf<Int>()) { acc, currentDrawn -> acc.add(currentDrawn).let { acc } }
+                .map {
+                    boards.foldIndexed(-1 to false) { index, acc, board ->
+                        when (acc.second) {
+                            true -> acc
+                            else -> when (checkBingo(board, it)) {
+                                true -> index to true
+                                false -> acc
+                            }
+                        }
+                    }.let { (index, isBingo) -> Triple(it, index, isBingo) }
+                }
+                .find { it.third }!!
+                .let { it.first.last() * (boards[it.second].toSet() - it.first).sum() }
+        }
+
+    fun partTwo(filePath: String): Int =
+        File(filePath).useLines { lines ->
+            val (drawns, boards) = parse(lines)
+            val isBoardBingos = boards.map { false }.toMutableList()
+
+            drawns.asSequence()
+                .runningFold(linkedSetOf<Int>()) { acc, currentDrawn -> acc.add(currentDrawn).let { acc } }
+                .map {
+                    it to boards.foldIndexed(-1) { index, acc, board ->
+                        when (isBoardBingos[index]) {
+                            true -> acc
+                            false -> checkBingo(board, it)
+                                .also { isBingo -> if (isBingo) isBoardBingos[index] = true }
+                                .let { isBingo -> if (isBingo) index else acc }
                         }
                     }
-                }.let { (index, isBingo) -> Triple(it, index, isBingo) }
-            }
-            .find { it.third }!!
-            .let { it.first.last() * (boards[it.second].toSet() - it.first).sum() }
-    }
-
-    fun partTwo(filePath: String): Int {
-        val (drawns, boards) = parse(File(filePath).bufferedReader().lineSequence())
-        val isBoardBingos = boards.map { false }.toMutableList()
-
-        return drawns.asSequence()
-            .runningFold(linkedSetOf<Int>()) { acc, currentDrawn -> acc.add(currentDrawn).let { acc } }
-            .map {
-                it to boards.foldIndexed(-1) { index, acc, board ->
-                    when (isBoardBingos[index]) {
-                        true -> acc
-                        false -> checkBingo(board, it)
-                            .also { if (it) isBoardBingos[index] = true }
-                            .let { if (it) index else acc }
-                    }
                 }
-            }
-            .find { _ -> isBoardBingos.all { it } }!!
-            .let { it.first.last() * (boards[it.second].toSet() - it.first).sum() }
-    }
+                .find { _ -> isBoardBingos.all { it } }!!
+                .let { it.first.last() * (boards[it.second].toSet() - it.first).sum() }
+        }
 
     private fun parse(input: Sequence<String>): Pair<List<Int>, List<List<Int>>> {
         val lines = input.iterator()
