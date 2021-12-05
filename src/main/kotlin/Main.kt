@@ -3,6 +3,7 @@ fun main() {
     val input2 = "src/main/kotlin/input2.txt"
     val input3 = "src/main/kotlin/input3.txt"
     val input4 = "src/main/kotlin/input4.txt"
+    val input5 = "src/main/kotlin/input5.txt"
 
     val day1 = Day1()
     println(day1.partOne(input1))
@@ -19,4 +20,8 @@ fun main() {
     val day4 = Day4()
     println(day4.partOne(input4))
     println(day4.partTwo(input4))
+
+    val day5 = Day5()
+    println(day5.partOne(input5))
+    println(day5.partTwo(input5))
 }
