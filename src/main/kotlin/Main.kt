@@ -7,6 +7,7 @@ fun main() {
     val input4 = "src/main/kotlin/input4.txt"
     val input5 = "src/main/kotlin/input5.txt"
     val input6 = "src/main/kotlin/input6.txt"
+    val input7 = "src/main/kotlin/input7.txt"
 
     Scanner(System.`in`).use {
         while (true) {
@@ -18,6 +19,7 @@ fun main() {
                     4 -> Day4().apply { println("${partOne(input4)}\n${partTwo(input4)}") }
                     5 -> Day5().apply { println("${partOne(input5)}\n${partTwo(input5)}") }
                     6 -> Day6().apply { println("${partOne(input6)}\n${partTwo(input6)}") }
+                    7 -> Day7().apply { println("${partOne(input7)}\n${partTwo(input7)}") }
                     else -> break
                 }
                 else -> break
