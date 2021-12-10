@@ -1,25 +1,20 @@
-import java.util.*
+import java.util.Scanner
 
 fun main() {
-    val input1 = "src/main/kotlin/input.txt"
-    val input2 = "src/main/kotlin/input2.txt"
-    val input3 = "src/main/kotlin/input3.txt"
-    val input4 = "src/main/kotlin/input4.txt"
-    val input5 = "src/main/kotlin/input5.txt"
-    val input6 = "src/main/kotlin/input6.txt"
-    val input7 = "src/main/kotlin/input7.txt"
+    val input: (Int) -> String = { n -> "src/main/kotlin/input$n.txt" }
 
     Scanner(System.`in`).use {
         while (true) {
-            when(it.next()) {
+            when (it.next()) {
                 "s" -> when (it.nextInt()) {
-                    1 -> Day1().apply { println("${partOne(input1)}\n${partTwo(input1)}") }
-                    2 -> Day2().apply { println("${partOne(input2)}\n${partTwo(input2)}") }
-                    3 -> Day3().apply { println("${partOne(input3)}\n${partTwo(input3)}") }
-                    4 -> Day4().apply { println("${partOne(input4)}\n${partTwo(input4)}") }
-                    5 -> Day5().apply { println("${partOne(input5)}\n${partTwo(input5)}") }
-                    6 -> Day6().apply { println("${partOne(input6)}\n${partTwo(input6)}") }
-                    7 -> Day7().apply { println("${partOne(input7)}\n${partTwo(input7)}") }
+                    1 -> Day1().apply { println("${partOne(input(1))}\n${partTwo(input(1))}") }
+                    2 -> Day2().apply { println("${partOne(input(2))}\n${partTwo(input(2))}") }
+                    3 -> Day3().apply { println("${partOne(input(3))}\n${partTwo(input(3))}") }
+                    4 -> Day4().apply { println("${partOne(input(4))}\n${partTwo(input(4))}") }
+                    5 -> Day5().apply { println("${partOne(input(5))}\n${partTwo(input(5))}") }
+                    6 -> Day6().apply { println("${partOne(input(6))}\n${partTwo(input(6))}") }
+                    7 -> Day7().apply { println("${partOne(input(7))}\n${partTwo(input(7))}") }
+                    8 -> Day8().apply { println("${partOne(input(8))}\n${partTwo(input(8))}") }
                     else -> break
                 }
                 else -> break
