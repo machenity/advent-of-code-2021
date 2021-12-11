@@ -17,7 +17,7 @@ class Day6 {
         return generateSequence(t, ::step).elementAt(256).values.sum()
     }
 
-    private fun step(t: Map<Int,Long>): Map<Int,Long> {
+    private fun step(t: Map<Int, Long>): Map<Int, Long> {
         val zeros = t[0]!!
         return ((t - 0).mapKeys { (k, _) -> k - 1 } + (8 to zeros))
             .let { it + (6 to it[6]!! + zeros) }
