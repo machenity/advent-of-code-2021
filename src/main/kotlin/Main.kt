@@ -17,6 +17,7 @@ fun main() {
                     8 -> Day8().apply { println("${partOne(input(8))}\n${partTwo(input(8))}") }
                     9 -> Day9().apply { println("${partOne(input(9))}\n${partTwo(input(9))}") }
                     10 -> Day10().apply { println("${partOne(input(10))}\n${partTwo(input(10))}") }
+                    11 -> Day11().apply { println("${partOne(input(11))}\n${partTwo(input(11))}") }
                     else -> break
                 }
                 else -> break
